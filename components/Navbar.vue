@@ -2,7 +2,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <img src="@/assets/images/usac-logo@2x.png" />
       </a>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -19,37 +19,47 @@
         </a>
 
         <a class="navbar-item">
-          Documentation
+            About Us
+        </a>
+
+        <a class="navbar-item">
+            Blog
         </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            More
+            Documents
           </a>
 
           <div class="navbar-dropdown">
             <a class="navbar-item">
-              About
+              Statutes
             </a>
             <a class="navbar-item">
-              Jobs
+              Standing Order
             </a>
             <a class="navbar-item">
-              Contact
+              Other Documents
             </a>
             <hr class="navbar-divider">
             <a class="navbar-item">
-              Report an issue
+              Request Document
             </a>
           </div>
         </div>
+        <a class="navbar-item">
+            Gallery
+        </a>
+        <a class="navbar-item">
+            Contact
+        </a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
+            <a class="button register__button">
+              <strong>Register</strong>
             </a>
             <a class="button is-light">
               Log in
@@ -68,7 +78,7 @@
       return {};
     },
     mounted() {
-        
+
         document.addEventListener('DOMContentLoaded', () => {
 
         // Get all "navbar-burger" elements
@@ -98,6 +108,36 @@
   }
 </script>
 
-<style>
-  @import "bulma/css/bulma.css";
+<style lang="scss">
+  .register__button {
+      background: $red;
+      color: $white;
+
+      &:hover {
+          color: $white;
+      }
+  }
+
+  .navbar {
+      padding: 0 100px;
+    //   background: $red;
+      color: $white;
+  }
+
+  .navbar-start {
+      margin-right: 0;
+      margin-left: auto;
+  }
+
+//   .navbar-item, .navbar-link {
+//       color: $white;
+//   }
+
+//   .navbar-dropdown > .navbar-item {
+//       color: black;
+
+//       &:hover ~ .navbar-link {
+//           color: black;
+//       }
+//   }
 </style>
