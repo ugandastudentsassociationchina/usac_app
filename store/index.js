@@ -12,10 +12,8 @@ export const mutations = {
 export const actions = {
     async getTest({ commit }) {
         await fetch('/test')
-            .then(data => {
-                commit('INCREMENT', data)
-                console.log(data)
-            })
+            .then(res => res.text())
+            .then(data => commit('INCREMENT', data))
             .catch(err => console.log(err));
     }
 }
