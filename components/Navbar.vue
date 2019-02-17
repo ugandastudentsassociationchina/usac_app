@@ -58,9 +58,9 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button register__button">
+            <NuxtLink to="/register" class="button register__button">
               <strong>Register</strong>
-            </a>
+            </NuxtLink>
             <a class="button is-light">
               Log in
             </a>
@@ -74,36 +74,96 @@
 <script>
   export default {
     name: 'Navbar',
+    // Custom Directives for Component
+    directives: {
+        'click-outside': {
+            bind: (el, binding, vNode) => {
+                // Provided expression must evaluate to a function.
+                if (typeof binding.value !== 'function') {
+                    const compName = vNode.context.name;
+                    let warn =
+                        `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`;
+                    if (compName) {
+                        warn += `Found in component '${compName}'`;
+                    }
+
+                    console.warn(warn);
+                }
+                // Define Handler and cache it on the element
+                const { bubble } = binding.modifiers;
+                const handler = (e) => {
+                    if (bubble || (!el.contains(e.target) && el !== e.target)) {
+                        binding.value(e);
+                    }
+                };
+                el.vueClickOutside = handler;
+
+                // add Event Listeners
+                document.addEventListener('click', handler);
+            },
+
+            unbind: (el) => {
+                // Remove Event Listeners
+                document.removeEventListener('click', el.vueClickOutside);
+                el.vueClickOutside = null;
+
+            },
+        },
+    },
     data() {
-      return {};
+      return {
+          navBurger: undefined,
+          navList: undefined,
+      };
+    },
+    computed: {
+        // navBurger() {
+        //     return document.querySelector('.navbar-burger');
+        // },
+        // navList() {
+        //     return document.getElementById('navbarBasicExample');
+        // }
     },
     mounted() {
 
         document.addEventListener('DOMContentLoaded', () => {
+            
+            this.navBurger = document.querySelector('.navbar-burger');
+            this.navList = document.getElementById('navbarBasicExample');
 
-        // Get all "navbar-burger" elements
-        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-        // Check if there are any navbar burgers
-        if ($navbarBurgers.length > 0) {
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
 
-            // Add a click event on each of them
-            $navbarBurgers.forEach( el => {
-            el.addEventListener('click', () => {
+                // Add a click event on each of them
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
 
-                // Get the target from the "data-target" attribute
-                const target = el.dataset.target;
-                const $target = document.getElementById(target);
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
 
-                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                el.classList.toggle('is-active');
-                $target.classList.toggle('is-active');
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
 
-            });
-            });
-        }
+                    });
+                });
+            }
 
         });
+    },
+    methods: {
+        hideMenu() {
+            if (this.navBurger.classList.contains('is-active')) {
+                this.navBurger.classList.remove('is-active');
+            }
+            if (this.navList.classList.contains('is-active')) {
+                this.navList.classList.remove('is-active');
+            }
+        }
     }
   }
 </script>
@@ -112,6 +172,7 @@
   .register__button {
       background: $red;
       color: $white;
+      border-color: $red-medium;
 
       &:hover {
           color: $white;
@@ -122,11 +183,17 @@
       padding: 0 100px;
     //   background: $red;
       color: $white;
+      position: sticky;
+      top:0;
   }
 
   .navbar-start {
       margin-right: 0;
       margin-left: auto;
+  }
+
+  .navbar-link:not(.is-arrowless)::after {
+      border-color: $red;
   }
 
 //   .navbar-item, .navbar-link {

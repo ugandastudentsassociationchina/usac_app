@@ -1,41 +1,29 @@
 <template>
   <section>
-    <navbar />
     <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        USAC | Uganda Students Association in China
-      </h1>
-      <h2 class="subtitle">
-        Uganda Students Association in China
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-      Howdy!
-    </div>
-  </section>
+      <h1>Welcome to USAC</h1>
+    </section>
   </section>
 </template>
 
 <script>
-  import Logo from '~/components/Logo.vue'
-  import Navbar from '~/components/Navbar.vue'
+  import Logo from '~/components/Logo.vue';
+  import Footer from '~/components/Footer.vue';
 
   export default {
     components: {
       Logo,
-      Navbar
+      Footer
     }
   }
 </script>
 
-<style>
+<style lang="scss">
+  body {
+    background-color: $light-gray;
+  }
   .container {
     margin: 0 auto;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
