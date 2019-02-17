@@ -1,6 +1,6 @@
-# 🇺🇬 Uganda Students Association China
+# 🇺🇬 Uganda Students Association in China (USAC)
 
-> Uganda Students Association China official website
+> Uganda Students Association in China official website
 
 ## Build Setup
 
