@@ -15,7 +15,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/usac-favicon.ico' }
     ]
   },
 
@@ -28,6 +28,11 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    // node.js module but we specify the pre-processor
+    {
+      src: 'bulma/bulma.sass',
+      lang: 'sass'
+    },
   ],
 
   /*
@@ -41,8 +46,16 @@ module.exports = {
   */
   modules: [,
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma'
+    '@nuxtjs/bulma',
+    '@nuxtjs/style-resources'
+
   ],
+  styleResources: {
+    scss: [
+      './assets/scss/pages/*.scss',
+      './assets/scss/components/*.scss',
+    ]
+  },
 
   /*
   ** Build configuration
